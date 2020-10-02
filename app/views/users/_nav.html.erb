@@ -1,0 +1,42 @@
+ <%# navabr %>
+  <div class = "Navbargavor">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-right">
+    <a class="navbar-brand" href="#"> BLOG XAM XI</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class = "position">
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+        <li class="nav-item">
+              <%= link_to  "Home", root_path, class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+              <%= link_to  "Help", help_path, class:"nav-link" %>
+        </li>
+        <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to  "Users", "#", class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <a class = "nav-link">Hello (<%= current_user.username %>)</a>
+          </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownId">
+            <%= link_to "Log out", logout_path,class:"nav-link", method: :delete %>
+            <%= link_to "Profile", '#',class:"nav-link" %>
+            <%= link_to "Edit User",'#' ,class:"nav-link" %>
+          </div>
+        </li>
+        
+        <% end %>
+        
+      </ul>
+    </div>
+    </div>
+  </nav>
+  </div>
