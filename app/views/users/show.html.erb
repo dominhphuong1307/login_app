@@ -1,9 +1,13 @@
+<%if logged_in?%>
+    <div class="container">
+        <h1 style = "text-align:center" >Welcome to my Pages </h1>
+        <p style = "text-align:center"><%= @user.username %> login success! </p>
 
-.<div class="container">
-    
+    </div>
+<% end %>
 
-<h1 style = "text-align:center" >Welcome to my Pages </h1>
-<p style = "text-align:center"><%= @user.username %> login success! </p>
-
-</div>
+<%if !logged_in?%>
+    <%# <%= redirect_to login_path %>
+    <%flash[:danger]="Please login to access Pages"%>
+<% end %>
 
