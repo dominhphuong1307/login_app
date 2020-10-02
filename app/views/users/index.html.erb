@@ -1,0 +1,9 @@
+<div class="container">
+
+<h1>All User</h1>
+    <% @users.each do |user|%>
+        <strong>Name: </strong><%= user.username%><br>
+        <strong>Email: </strong><%= user.email%><br>
+        <hr>
+    <% end %>
+</div>

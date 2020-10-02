@@ -24,19 +24,20 @@
         <% end %>
         <% if logged_in? %>
           <li class="nav-item">
+            <%= link_to  "Users", users_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
             <a class = "nav-link">Hello (<%= current_user.username %>)</a>
           </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
           <div class="dropdown-menu" aria-labelledby="dropdownId">
             <%= link_to "Log out", logout_path,class:"nav-link", method: :delete %>
-            <%= link_to "Profile", '#',class:"nav-link" %>
+            <%= link_to "Profile", user_path(current_user),class:"nav-link" %>
             <%= link_to "Edit User",edit_user_path(current_user) ,class:"nav-link" %>
           </div>
         </li>
-        
         <% end %>
-        
       </ul>
     </div>
     </div>

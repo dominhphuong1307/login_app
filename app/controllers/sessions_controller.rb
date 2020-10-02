@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
             params[:session][:remember_me] =='1'? remember(@user): forget(@user)
             # render json: {status: 200, msg: "Succsses Login !"}
 
-            redirect_to user_path(@user)
+            redirect_to root_path
         else
             flash[:danger] = "Login Failed!"
             render 'new' 
