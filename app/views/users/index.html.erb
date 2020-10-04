@@ -1,9 +1,31 @@
 <div class="container">
 
 <h1>All User</h1>
+
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+    
     <% @users.each do |user|%>
-        <strong>Name: </strong><%= user.username%><br>
-        <strong>Email: </strong><%= user.email%><br>
+        <div class="position-avatar" style="display:flex">
+
+        <%= link_to user_path(user) do %>
+            <div class="avatar">
+                <%= gravatar_for user%>
+            </div>
+        <% end %>
+            <div class="showalluser" style="line-height:40px">    
+                <strong>Name: </strong><%= user.username%><br>
+                <strong>Email: </strong><%= user.email%><br>
+            </div>
+        </div>
         <hr>
     <% end %>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<%=paginate @users%>
+
 </div>

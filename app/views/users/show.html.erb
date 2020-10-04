@@ -1,11 +1,8 @@
 
 <div class="container">
     <h1 style = "text-align:center" >Profile Details </h1>
+    <%= gravatar_for @user%>
     <p ><strong>Name: </strong><%= @user.username %></p>
     <p ><strong>Email: </strong><%= @user.email %></p>
 
 </div>
-
-
-
-
