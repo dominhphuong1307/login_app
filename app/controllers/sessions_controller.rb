@@ -3,14 +3,13 @@ class SessionsController < ApplicationController
     def new
     end
     def create
-        @user = User.find_by(email: params[:session][:email].downcase)
-        if @user && @user.authenticate(params[:session][:password])
-            if @user.activated?
+        user = User.find_by(email: params[:session][:email].downcase)
+        if user && user.authenticate(params[:session][:password])
+            if user.activated?
             flash[:success] = "Login Success!"
             # Save data user in session
-
-            log_in @user
-            params[:session][:remember_me] =='1'? remember(@user): forget(@user)
+            log_in user
+            params[:session][:remember_me] =='1'? remember(user): forget(user)
             # render json: {status: 200, msg: "Succsses Login !"}
             redirect_back_or user
 

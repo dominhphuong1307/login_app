@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     before_action :correct_user, only: [:edit,:update]
     before_action :admin_user, only: [:destroy]
     def index
-        @users = User.where(activated: FILL_IN).page params[:page]
+        @users = User.page params[:page]
     end
 
     def new 
@@ -11,15 +11,14 @@ class UsersController < ApplicationController
     end
     def show
         @user = User.find(params[:id])
-        redirect_to root_url and return unless FILL_IN
+        redirect_to root_url 
     end
 
     def create 
         @user = User.new(users_params)
         if @user.save 
-            @user.send_activation_email
+            UserMailer.account_activation(@user).deliver_now
             flash[:info]="Please check your email to activate your account."
-
             # redirect_to user_path(@user)
             redirect_to root_path
         else
