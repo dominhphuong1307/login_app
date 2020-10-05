@@ -32,7 +32,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
           <div class="dropdown-menu" aria-labelledby="dropdownId">
-            <%= link_to "Log out", logout_path,class:"nav-link", method: :delete %>
+            <%= link_to "Log out", logout_path,class:"nav-link", method: :delete,data: { confirm: 'Are you sure Logout?' } %>
             <%= link_to "Profile", user_path(current_user),class:"nav-link" %>
             <%= link_to "Edit User",edit_user_path(current_user) ,class:"nav-link" %>
           </div>
