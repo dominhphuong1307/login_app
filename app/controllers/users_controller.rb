@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     before_action :correct_user, only: [:edit,:update]
     before_action :admin_user, only: [:destroy]
     def index
-        @users = User.page params[:page]
+        @users = User.where(activated: FILL_IN).page params[:page]
     end
 
     def new 
@@ -11,14 +11,17 @@ class UsersController < ApplicationController
     end
     def show
         @user = User.find(params[:id])
+        redirect_to root_url and return unless FILL_IN
     end
 
     def create 
         @user = User.new(users_params)
         if @user.save 
-            flash[:success]= "Register success!"
+            @user.send_activation_email
+            flash[:info]="Please check your email to activate your account."
+
             # redirect_to user_path(@user)
-            redirect_to login_path
+            redirect_to root_path
         else
             flash[:danger] = "Register failed!"
             render 'new' 
