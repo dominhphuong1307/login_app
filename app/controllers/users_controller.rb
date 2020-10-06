@@ -11,13 +11,12 @@ class UsersController < ApplicationController
     end
     def show
         @user = User.find(params[:id])
-        redirect_to root_url 
     end
 
-    def create 
+    def create
         @user = User.new(users_params)
         if @user.save 
-            UserMailer.account_activation(@user).deliver_now
+            UserMailer.account_activations(@user).deliver
             flash[:info]="Please check your email to activate your account."
             # redirect_to user_path(@user)
             redirect_to root_path

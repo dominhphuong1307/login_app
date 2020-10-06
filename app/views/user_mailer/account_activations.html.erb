@@ -1,0 +1,7 @@
+<h1>Blog Xàm Xí</h1>
+<p>Hi <%= @user.username%>,</p>
+<p>
+  Chào mừng bạn đến với Blog Xàm Xí! Bạn vui lòng click vào active ở dưới để đăng kí tài khoản của bạn :
+</p>
+<%=link_to "Activate the account", edit_account_activation_url(@user.activation_token,email:@user.email), class:"btn btn-primary"%>
+</p>

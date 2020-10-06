@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   default_url_options :host => "example.com"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users
@@ -16,4 +17,5 @@ Rails.application.routes.draw do
   get 'show/:id'  => 'users#show'
 
   resources :account_activations, only: [:edit]
+  resources :password_resets, only: [:new,:create,:edit,:update]
 end
