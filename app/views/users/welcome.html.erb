@@ -1,12 +1,37 @@
 <div class="center jumbotron">
-    <h1>Welcome to the Blog of Minh Phuong</h1>
+    <h1>Welcome <%if logged_in?%> <%= current_user.username %> <%end%> come to the Blog Xam Xi</h1>
     <h2>This is the home page for the blog.</h2>
+
 
     <%if !logged_in? %>
         
        <%= link_to "Sign in now!", login_path, class: "btn btn-lg btn-primary"%> <%= link_to "Sign up now!", new_user_path, class: "btn btn-lg btn-primary"%>
-    
-    <% end %>
-    
+    <% else %>
 
+    <div class="row">
+        <aside class="col-md-4">
+            <section class="user_info">
+                <%=render'share/user_info'%>
+            </section>
+            <section class="micropost_form">
+                <%=render'share/micropost_form'%>
+            </section>
+        </aside>
+        <div class="col-md-8">
+            <h3>Micropost Feed(<%= current_user.microposts.count%>)</h3>
+            <%=render'share/feed'%>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <% end %>
 </div>

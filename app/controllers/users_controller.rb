@@ -2,6 +2,16 @@ class UsersController < ApplicationController
     before_action :logged_in_user, only: [:index,:edit,:update,:show]
     before_action :correct_user, only: [:edit,:update]
     before_action :admin_user, only: [:destroy]
+    before_action :logged_in? , only: [:welcome]
+
+
+    def welcome
+        if logged_in?
+            @user = User.find(current_user[:id]) 
+            @micropost = current_user.microposts.build 
+            @feed_items = current_user.feed.page params[:page]
+        end
+    end
     def index
         @users = User.page params[:page]
     end
@@ -9,8 +19,10 @@ class UsersController < ApplicationController
     def new 
         @user = User.new
     end
+
     def show
         @user = User.find(params[:id])
+        @microposts = @user.microposts.page params[:page]
     end
 
     def create
